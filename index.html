@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="jobApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Tracker</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-controller="JobController">
+
+    <div class="container">
+
+        <h1>Job Application Tracker</h1>
+
+        <div class="card">
+            <h2>Total Applications</h2>
+            <p>{{totalApplications}}</p>
+        </div>
+<div class="stats-container">
+
+    <div class="stat-card applied-card">
+    <h3>Applied</h3>
+        <p>{{appliedCount}}</p>
+    </div>
+
+   <div class="stat-card interview-card">
+    <h3>Interview Scheduled</h3>
+        <p>{{interviewCount}}</p>
+    </div>
+
+    <div class="stat-card rejected-card">
+    <h3>Rejected</h3>
+        <p>{{rejectedCount}}</p>
+    </div>
+<div class="stat-card selected-card">
+    <h3>Selected</h3>
+    <p>{{selectedCount}}</p>
+</div>
+</div>
+      <button>
+    Add New Application
+</button>
+<div class="card">
+
+    <h2>Add Application</h2>
+
+    <input type="text"
+           placeholder="Company Name"
+           ng-model="newCompany">
+
+    <input type="text"
+           placeholder="Job Role"
+           ng-model="newRole">
+
+    <select ng-model="newStatus">
+    <option value="">Select Status</option>
+    <option value="Applied">Applied</option>
+    <option value="Interview Scheduled">Interview Scheduled</option>
+    <option value="Selected">Selected</option>
+    <option value="Rejected">Rejected</option>
+</select>
+
+    <button ng-click="addNewApplication()">
+        Save Application
+    </button>
+
+</div>
+<div class="card">
+
+    <input type="text"
+           ng-model="searchText"
+           placeholder="Search applications">
+
+    <table>
+        <tr>
+            <th>Company</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+
+        <tr ng-repeat="app in applications | filter:searchText track by $index">
+            <td>{{app.company}}</td>
+            <td>{{app.role}}</td>
+           <td>
+    <span ng-class="{
+        'applied': app.status === 'Applied',
+        'interview': app.status === 'Interview Scheduled',
+        'selected': app.status === 'Selected',
+        'rejected': app.status === 'Rejected'
+    }">
+        {{app.status}}
+    </span>
+</td>
+            <td>
+    <button ng-click="deleteApplication($index)">
+    Delete
+</button>
+</td>
+        </tr>
+    </table>
+</div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
