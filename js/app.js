@@ -60,10 +60,11 @@ updateStats();
         }
 
         $scope.applications.push({
-            company: $scope.newCompany,
-            role: $scope.newRole,
-            status: $scope.newStatus
-        });
+    company: $scope.newCompany,
+    role: $scope.newRole,
+    date: $scope.newDate,
+    status: $scope.newStatus
+});
 
         localStorage.setItem(
             "applications",
@@ -90,5 +91,25 @@ updateStats();
         $scope.totalApplications = $scope.applications.length;
         updateStats();
     };
+$scope.editApplication = function (index) {
 
+    $scope.newCompany =
+        $scope.applications[index].company;
+
+    $scope.newRole =
+        $scope.applications[index].role;
+
+    $scope.newStatus =
+        $scope.applications[index].status;
+
+    $scope.applications.splice(index, 1);
+
+    localStorage.setItem(
+        "applications",
+        JSON.stringify($scope.applications)
+    );
+
+    $scope.totalApplications =
+        $scope.applications.length;
+};
 });

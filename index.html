@@ -56,6 +56,8 @@
     <input type="text"
            placeholder="Job Role"
            ng-model="newRole">
+           <input type="date"
+       ng-model="newDate">
 
     <select ng-model="newStatus">
     <option value="">Select Status</option>
@@ -75,18 +77,42 @@
     <input type="text"
            ng-model="searchText"
            placeholder="Search applications">
+<div class="filter-buttons">
 
+    <button ng-click="statusFilter=''">
+        All
+    </button>
+
+    <button ng-click="statusFilter='Applied'">
+        Applied
+    </button>
+
+    <button ng-click="statusFilter='Interview Scheduled'">
+        Interview
+    </button>
+
+    <button ng-click="statusFilter='Selected'">
+        Selected
+    </button>
+
+    <button ng-click="statusFilter='Rejected'">
+        Rejected
+    </button>
+
+</div>
     <table>
         <tr>
-            <th>Company</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>Action</th>
+           <th>Company</th>
+           <th>Role</th>
+           <th>Date</th>
+           <th>Status</th>
+           <th>Action</th>
         </tr>
 
-        <tr ng-repeat="app in applications | filter:searchText track by $index">
+       <tr ng-repeat="app in applications | filter:searchText | filter:{status: statusFilter} track by $index">
             <td>{{app.company}}</td>
             <td>{{app.role}}</td>
+            <td>{{app.date | date:'dd MMM yyyy'}}</td>
            <td>
     <span ng-class="{
         'applied': app.status === 'Applied',
@@ -97,10 +123,14 @@
         {{app.status}}
     </span>
 </td>
-            <td>
+           <td>
+    <button ng-click="editApplication($index)">
+        Edit
+    </button>
+
     <button ng-click="deleteApplication($index)">
-    Delete
-</button>
+        Delete
+    </button>
 </td>
         </tr>
     </table>
