@@ -56,6 +56,7 @@ updateStats();
     company: $scope.newCompany,
     role: $scope.newRole,
     date: $scope.newDate,
+    notes: $scope.newNotes,
     status: $scope.newStatus
 });
 
@@ -67,8 +68,9 @@ updateStats();
         $scope.totalApplications = $scope.applications.length;
         updateStats();
         $scope.newCompany = "";
-        $scope.newRole = "";
-        $scope.newStatus = "";
+$scope.newRole = "";
+$scope.newStatus = "";
+$scope.newNotes = "";
     };
 
     // Delete application
@@ -88,14 +90,17 @@ updateStats();
         updateStats();
     }
 };
+$scope.viewNote = function(note) {
+    alert(note);
+};
 $scope.editApplication = function (index) {
 
     $scope.newCompany =
         $scope.applications[index].company;
-
+$scope.newNotes = $scope.applications[index].notes;
     $scope.newRole =
         $scope.applications[index].role;
-
+$scope.newDate = new Date($scope.applications[index].date);
     $scope.newStatus =
         $scope.applications[index].status;
 

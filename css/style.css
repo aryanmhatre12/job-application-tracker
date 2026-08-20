@@ -217,3 +217,47 @@ input:checked + .slider{
 input:checked + .slider:before{
     transform:translateX(26px);
 }
+td[colspan="5"]{
+    text-align: center;
+    padding: 20px;
+    color: #888;
+    font-style: italic;
+}
+textarea {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+    min-height: 45px;
+}
+.dark-mode textarea {
+    background: #1f1f1f;
+    color: white;
+    border: 1px solid #444;
+}
+th:nth-child(4),
+td:nth-child(4) {
+    width: 150px;
+}
+.notes-cell {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+.view-btn{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:8px;
+    transition:0.3s;
+}
+
+.view-btn:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}

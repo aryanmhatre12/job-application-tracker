@@ -68,7 +68,12 @@
            <input type="date"
        ng-model="newDate">
 
-    <select ng-model="newStatus">
+<input
+    type="text"
+    ng-model="newNotes"
+    placeholder="Notes (Optional)">
+
+<select ng-model="newStatus">
     <option value="">Select Status</option>
     <option value="Applied">Applied</option>
     <option value="Interview Scheduled">Interview Scheduled</option>
@@ -112,16 +117,28 @@
     <table>
         <tr>
            <th>Company</th>
-           <th>Role</th>
-           <th>Date</th>
-           <th>Status</th>
-           <th>Action</th>
+<th>Role</th>
+<th>Date</th>
+<th>Notes</th>
+<th>Status</th>
+<th>Action</th>
         </tr>
 
        <tr ng-repeat="app in applications | filter:searchText | filter:{status: statusFilter} track by $index">
             <td>{{app.company}}</td>
             <td>{{app.role}}</td>
             <td>{{app.date | date:'dd MMM yyyy'}}</td>
+           <td>
+    {{app.notes | limitTo:15}}
+    <span ng-if="app.notes.length > 15">...</span>
+
+    <button
+        class="view-btn"
+        ng-if="app.notes"
+        ng-click="viewNote(app.notes)">
+        👁 View
+    </button>
+</td>
            <td>
     <span ng-class="{
         'applied': app.status === 'Applied',
@@ -142,7 +159,14 @@
     </button>
 </td>
         </tr>
-    </table>
+
+<tr ng-if="applications.length === 0">
+    <td colspan="6">
+        No applications found. Add your first application.
+    </td>
+</tr>
+
+</table>
 </div>
 
     <script src="js/app.js"></script>
