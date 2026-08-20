@@ -94,6 +94,6 @@ cd job-application-tracker
 
 GitHub: https://github.com/aryanmhatre12
 
-LinkedIn:https: //www.linkedin.com/in/aryan-mhatre-732804380/
+LinkedIn: https://www.linkedin.com/in/aryan-mhatre-732804380/
 
 ⭐ If you like this project, consider giving it a star.
