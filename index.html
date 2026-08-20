@@ -15,7 +15,7 @@
 
     <div class="container">
 
-        <h1>Job Application Tracker</h1>
+        <h1>📋 Job Application Tracker</h1>
 
         <div class="card">
             <h2>Total Applications</h2>
@@ -42,10 +42,19 @@
     <p>{{selectedCount}}</p>
 </div>
 </div>
-      <button>
-    Add New Application
-</button>
-<div class="card">
+      <div class="theme-toggle">
+    <span>☀️</span>
+
+    <label class="switch">
+        <input type="checkbox"
+               ng-model="darkMode"
+               ng-change="toggleDarkMode()">
+        <span class="slider"></span>
+    </label>
+
+    <span>🌙</span>
+</div>
+<div class="card" id="addForm">
 
     <h2>Add Application</h2>
 

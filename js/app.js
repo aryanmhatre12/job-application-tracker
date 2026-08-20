@@ -1,25 +1,18 @@
 var app = angular.module("jobApp", []);
 
 app.controller("JobController", function ($scope) {
+$scope.darkMode =
+    JSON.parse(localStorage.getItem("darkMode")) || false;
 
+if ($scope.darkMode) {
+    document.body.classList.add("dark-mode");
+}
     // Load data from localStorage
     let savedApplications = JSON.parse(
         localStorage.getItem("applications")
     );
 
-    // If nothing saved, use default data
-    $scope.applications = savedApplications || [
-        {
-            company: "Hudl",
-            role: "Support Analyst",
-            status: "Interview Scheduled"
-        },
-        {
-            company: "TCS",
-            role: "Software Developer",
-            status: "Applied"
-        }
-    ];
+    $scope.applications = savedApplications || [];
 
     $scope.totalApplications = $scope.applications.length;
     function updateStats() {
@@ -81,6 +74,8 @@ updateStats();
     // Delete application
     $scope.deleteApplication = function (index) {
 
+    if (confirm("Are you sure you want to delete this application?")) {
+
         $scope.applications.splice(index, 1);
 
         localStorage.setItem(
@@ -89,8 +84,10 @@ updateStats();
         );
 
         $scope.totalApplications = $scope.applications.length;
+
         updateStats();
-    };
+    }
+};
 $scope.editApplication = function (index) {
 
     $scope.newCompany =
@@ -112,4 +109,17 @@ $scope.editApplication = function (index) {
     $scope.totalApplications =
         $scope.applications.length;
 };
+$scope.toggleDarkMode = function () {
+
+    document.body.classList.toggle("dark-mode");
+
+    $scope.darkMode =
+        document.body.classList.contains("dark-mode");
+
+    localStorage.setItem(
+        "darkMode",
+        JSON.stringify($scope.darkMode)
+    );
+};
+
 });
