@@ -261,3 +261,14 @@ td:nth-child(4) {
     background:#1d4ed8;
     transform:translateY(-2px);
 }
+.footer{
+    text-align:center;
+    margin-top:25px;
+    padding:15px;
+    color:#888;
+    font-size:14px;
+    border-top:1px solid #2a2a2a;
+}
+.dark-mode .footer{
+    color:#aaa;
+}
